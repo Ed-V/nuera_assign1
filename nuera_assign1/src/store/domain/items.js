@@ -1,4 +1,4 @@
-import { observable, autorun, action, decorate } from "mobx";
+import { observable, action, decorate } from "mobx";
 import { computedFn } from 'mobx-utils';
 import item from "../../entity/item";
 
