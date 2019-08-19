@@ -2,7 +2,7 @@ import React from "react";
 import * as category from "./../../entity/category";
 
 const calcControl = props => (
-  <form>
+  <form onSubmit={props.handleSubmit.bind(this)}>
        <div className="field is-horizontal">
     <div className="field">
       <p className="control is-expanded">
@@ -11,6 +11,7 @@ const calcControl = props => (
           type="text"
           placeholder="Item Name"
           value={props.itemName}
+          onChange={props.handleNameChanged.bind(this)}
         />
       </p>
     </div>
@@ -20,14 +21,14 @@ const calcControl = props => (
           className="input"
           type="number"
           placeholder="ItemCost"
-          value={props.itemCost}
+          value={props.itemCost} onChange={props.handleCostChanged.bind(this)}
         />
       </p>
     </div>
     <div className="field">
       <p className="control is-expanded">
         <div className="select is-fullwidth">
-          <select selected={props.itemCategory} className="is-fullWidth">
+          <select selected={props.itemCategory} className="is-fullWidth" onChange={props.handleCategoryChanged.bind(this)}>
             <option value={category.Electronics}>{category.Electronics}</option>
             <option value={category.Clothing}>{category.Clothing}</option>
             <option value={category.Kitchen}>{category.Kitchen}</option>
