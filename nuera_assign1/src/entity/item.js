@@ -31,6 +31,14 @@ export default class Item {
   get category() {
     return this._category;
   }
+
+  get id(){
+    return this._id;
+  }
+
+  set id(newValue){
+    this._id = newValue;
+  }
 }
 
 
