@@ -4,6 +4,7 @@ import "./App.css";
 import * as category from "./entity/category";
 import { observer, inject } from "mobx-react";
 import Layout from "./component/layout/layout";
+import Calculator from './container/Calculator/Calculator';
 
 class App extends React.Component {
   test = () => {
@@ -14,7 +15,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Layout />
+        <Layout><Calculator></Calculator></Layout>
       </div>
     );
   }
