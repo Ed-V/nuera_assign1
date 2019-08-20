@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CalcControl from "./../../component/ui/CalcControl";
 import * as category from "./../../entity/category";
-import {inject, observer} from 'mobx-react';
+import { inject, observer } from "mobx-react";
 
 class Calculator extends Component {
   constructor(props) {
@@ -15,7 +15,11 @@ class Calculator extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    alert("It worked");
+    this.props.itemStore.addItem(
+      this.state.itemName,
+      this.state.itemCost,
+      this.state.itemCategory
+    );
   };
 
   handleCostChanged = event => {
@@ -27,7 +31,8 @@ class Calculator extends Component {
   };
 
   handleCategoryChanged = event => {
-    this.setState({ itemCategory: event.target.value });
+    this.setState({ itemCategory: event.target.options[event.target.options.selectedIndex].value });
+   
   };
 
   render() {
