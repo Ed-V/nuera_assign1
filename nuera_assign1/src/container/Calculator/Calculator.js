@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import CalcControl from "./../../component/ui/CalcControl";
+import Items from "../../component/items/items";
 import * as category from "./../../entity/category";
 import { inject, observer } from "mobx-react";
 
@@ -31,14 +32,25 @@ class Calculator extends Component {
   };
 
   handleCategoryChanged = event => {
-    this.setState({ itemCategory: event.target.options[event.target.options.selectedIndex].value });
-   
+    this.setState({
+      itemCategory:
+        event.target.options[event.target.options.selectedIndex].value
+    });
+  };
+
+  handleItemDelete = (id, event) => {
+    this.props.itemStore.removeItem(id);
   };
 
   render() {
     return (
       <div className="container">
-        <div>Item lddist</div>
+        <Items
+          handleItemDelete={this.handleItemDelete}
+          itemList={this.props.itemStore.sortedArray}
+          categoryTotal={this.props.itemStore.calcCategoryTotal}
+          listTotal={this.props.itemStore.itemTotalPrice}
+        />
         <CalcControl
           itemName={this.state.itemName}
           itemCost={this.state.itemCost}
