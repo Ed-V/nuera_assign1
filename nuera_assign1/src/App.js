@@ -2,7 +2,6 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import * as category from "./entity/category";
-import { observer, inject } from "mobx-react";
 import Layout from "./component/layout/layout";
 import Calculator from './container/Calculator/Calculator';
 
@@ -21,4 +20,4 @@ class App extends React.Component {
   }
 }
 
-export default inject("itemStore")(observer(App));
+export default App;
