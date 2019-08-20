@@ -4,24 +4,30 @@ import item from "../../entity/item";
 import * as itemCategory from "../../entity/category";
 
 export const itemStore = class ItemStore {
-  itemList = [];
+  
+
+    _itemList = [];
+
 
   addItem(name, value, category) {
-    this.itemList.push(new item(name, value, category));
+    this._itemList.push(new item(name, value, category));
+
   }
 
   removeItem(id) {
-    let toRemove = this.itemList.findIndex(item => item.id === id);
-    this.itemList.splice(toRemove, 1);
+    let toRemove = this._itemList.findIndex(item => item.id === id);
+    this._itemList.splice(toRemove, 1);
   }
 
-  calcCategoryTotal = computedFn(function calcCategoryTotal(category) {
-    let result = this.itemList.filter(x => x.includes(category));
+  calcCategoryTotal = computedFn((category) => {
     let total = 0;
-
-    result.forEach(element => {
-      total += element.value;
+     this._itemList.forEach(element => {
+      if (element.category === category) {
+        total = (total + element.value);
+      }
     });
+
+
 
     return total;
   });
@@ -31,7 +37,7 @@ export const itemStore = class ItemStore {
 
     itemCategory.CategoryList.forEach(category => {
       let sortedSegment = [];
-      this.itemList.forEach(item => {
+      this._itemList.forEach(item => {
         if (category === item.category) {
           sortedSegment.push(item);
         }
@@ -45,10 +51,14 @@ export const itemStore = class ItemStore {
     return sortedResult;
   }
 
+  get itemList(){
+    return this._itemList;
+  }
+
   get itemTotalPrice() {
     let totalCost = 0;
 
-    this.itemList.forEach(item => {
+    this._itemList.forEach(item => {
       totalCost += item.value;
     });
 
@@ -57,9 +67,10 @@ export const itemStore = class ItemStore {
 };
 
 decorate(itemStore, {
-  itemList: observable,
+  _itemList: observable,
   addItem: action,
   removeItem: action,
   sortedArray: computed,
-  itemTotalPrice: computed
+  itemTotalPrice: computed,
+  itemList: computed
 });
