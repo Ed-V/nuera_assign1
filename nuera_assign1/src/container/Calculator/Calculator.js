@@ -38,8 +38,8 @@ class Calculator extends Component {
     });
   };
 
-  handleItemDelete = event => {
-    console.log(this.props.itemStore.sortedArray);
+  handleItemDelete = (id, event) => {
+    this.props.itemStore.removeItem(id);
   };
 
   render() {
@@ -48,6 +48,8 @@ class Calculator extends Component {
         <Items
           handleItemDelete={this.handleItemDelete}
           itemList={this.props.itemStore.sortedArray}
+          categoryTotal={this.props.itemStore.calcCategoryTotal}
+          listTotal={this.props.itemStore.itemTotalPrice}
         />
         <CalcControl
           itemName={this.state.itemName}
