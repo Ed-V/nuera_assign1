@@ -1,4 +1,4 @@
-import { observable, action, decorate } from "mobx";
+import { observable, action, decorate, computed } from "mobx";
 import { computedFn } from "mobx-utils";
 import item from "../../entity/item";
 import * as itemCategory from "../../entity/category";
@@ -27,10 +27,12 @@ export const itemStore = class ItemStore {
   });
 
   get sortedArray() {
+ 
     let sortedResult = [];
+
     itemCategory.CategoryList.forEach(category => {
       let sortedSegment = [];
-      itemList.forEach(item => {
+      this.itemList.forEach(item => {
         if (category === item.category) {
           sortedSegment.push(item);
         }
