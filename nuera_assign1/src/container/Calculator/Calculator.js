@@ -1,0 +1,56 @@
+import React, { Component } from "react";
+import CalcControl from "./../../component/ui/CalcControl";
+import * as category from "./../../entity/category";
+import { inject, observer } from "mobx-react";
+
+class Calculator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      itemName: "",
+      itemCost: 0,
+      itemCategory: category.Electronics
+    };
+  }
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.itemStore.addItem(
+      this.state.itemName,
+      this.state.itemCost,
+      this.state.itemCategory
+    );
+  };
+
+  handleCostChanged = event => {
+    this.setState({ itemCost: event.target.value });
+  };
+
+  handleNameChanged = event => {
+    this.setState({ itemName: event.target.value });
+  };
+
+  handleCategoryChanged = event => {
+    this.setState({ itemCategory: event.target.options[event.target.options.selectedIndex].value });
+   
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <div>Item lddist</div>
+        <CalcControl
+          itemName={this.state.itemName}
+          itemCost={this.state.itemCost}
+          itemCategory={this.state.itemCategory}
+          handleCostChanged={this.handleCostChanged}
+          handleNameChanged={this.handleNameChanged}
+          handleCategoryChanged={this.handleCategoryChanged}
+          handleSubmit={this.handleSubmit}
+        />
+      </div>
+    );
+  }
+}
+
+export default inject("itemStore")(observer(Calculator));
