@@ -1,10 +1,10 @@
-import uuid from 'uuid/v4';
+import uuid from "uuid/v4";
 
 export default class Item {
   constructor(name, value, category) {
     this._id = uuid();
     this._name = name;
-    this._value = value;
+    this._value = this.StringCoverter(value);
     this._category = category;
   }
 
@@ -12,33 +12,41 @@ export default class Item {
     return this._name;
   }
 
-  set name(newName) {
-    this._name = newName;
-  }
-
   get value() {
     return this._value;
-  }
-
-  set value(newValue) {
-    this._value = newValue;
-  }
-
-  set category(newCategory) {
-    this._category = newCategory;
   }
 
   get category() {
     return this._category;
   }
 
-  get id(){
+  get id() {
     return this._id;
   }
 
-  set id(newValue){
+  set name(newName) {
+    this._name = newName;
+  }
+
+  set value(newValue) {
+    this._value = this.StringCoverter(newValue);
+  }
+
+  set category(newCategory) {
+    this._category = newCategory;
+  }
+
+  set id(newValue) {
     this._id = newValue;
   }
+
+  StringCoverter(value) {
+    let result = 0;
+    if (typeof value === "string") {
+      result = parseInt(value, 10);
+    } else {
+      result = value;
+    }
+    return result;
+  }
 }
-
-
