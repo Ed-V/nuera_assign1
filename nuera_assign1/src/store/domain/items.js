@@ -27,7 +27,6 @@ export const itemStore = class ItemStore {
   });
 
   get sortedArray() {
- 
     let sortedResult = [];
 
     itemCategory.CategoryList.forEach(category => {
@@ -45,11 +44,22 @@ export const itemStore = class ItemStore {
 
     return sortedResult;
   }
+
+  get itemTotalPrice() {
+    let totalCost = 0;
+
+    this.itemList.forEach(item => {
+      totalCost += item.value;
+    });
+
+    return totalCost;
+  }
 };
 
 decorate(itemStore, {
   itemList: observable,
   addItem: action,
   removeItem: action,
-  sortedArray: computed
+  sortedArray: computed,
+  itemTotalPrice: computed
 });
