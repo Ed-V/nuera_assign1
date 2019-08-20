@@ -1,5 +1,11 @@
 import uuid from "uuid/v4";
-
+/**
+ *
+ * This class represents an item
+ *
+ * @export {Item} The item class
+ * @class Item
+ */
 export default class Item {
   constructor(name, value, category) {
     this._id = uuid();

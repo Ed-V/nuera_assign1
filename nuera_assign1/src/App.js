@@ -5,6 +5,7 @@ import * as category from "./entity/category";
 import Layout from "./component/layout/layout";
 import Calculator from './container/Calculator/Calculator';
 
+//The main application component, acts as the entry
 class App extends React.Component {
   test = () => {
     this.props.itemStore.addItem("test", "test", category.Electronics);

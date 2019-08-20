@@ -1,6 +1,11 @@
 import React from "react";
 import Aux from "./../../hoc/Auxiliary";
-
+/**
+ *A stateless component that handles displaying the list of items
+ *
+ * @param {*} props - Passed props
+ * @returns Component
+ */
 const items = props => {
   const itemsDisplay = props.itemList.map(itemElement => (
     <Aux key={itemElement[0].category}>
