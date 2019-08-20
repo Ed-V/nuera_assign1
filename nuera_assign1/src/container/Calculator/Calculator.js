@@ -3,8 +3,15 @@ import CalcControl from "./../../component/ui/CalcControl";
 import Items from "../../component/items/items";
 import * as category from "./../../entity/category";
 import { inject, observer } from "mobx-react";
-
+/**
+ *A stateful component that creates a calculator
+ *
+ * @class Calculator
+ * @extends {Component}
+ */
 class Calculator extends Component {
+
+    //Local states are used as the data entered doesn't matter to other parts of the program
   constructor(props) {
     super(props);
     this.state = {

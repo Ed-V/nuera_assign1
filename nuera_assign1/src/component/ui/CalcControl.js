@@ -1,6 +1,10 @@
 import React from "react";
 import * as category from "./../../entity/category";
-
+/**
+ *A stateless component that handles the controls of the item list
+ *
+ * @param {*} props - Passed in props
+ */
 const calcControl = props => (
   <form onSubmit={props.handleSubmit.bind(this)}>
     <div className="field is-horizontal">
