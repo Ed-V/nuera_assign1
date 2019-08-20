@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import CalcControl from "./../../component/ui/CalcControl";
 import * as category from "./../../entity/category";
+import {inject, observer} from 'mobx-react';
 
 class Calculator extends Component {
   constructor(props) {
@@ -47,4 +48,4 @@ class Calculator extends Component {
   }
 }
 
-export default Calculator;
+export default inject("itemStore")(observer(Calculator));
